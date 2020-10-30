@@ -14,8 +14,7 @@ names(litters)
 reg1 <- lm(brainwt ~ lsize + bodywt)
 summary(reg1)
 reg1
-#Todas as variáveis são significativas para o modelo, porém o R^2 e o R^2 robusto é 
-#de 0,6505 e 0,6094 respectivamente.
+#Todas as variáveis são significativas para o modelo, porém o R^2 e o R^2 robusto é de 0,6505 e 0,6094 respectivamente.
 
 library(scatterplot3d)
 
