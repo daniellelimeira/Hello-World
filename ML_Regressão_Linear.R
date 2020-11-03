@@ -1,4 +1,4 @@
-#Modelos Lineares de RegressÃ£o
+#Modelos Lineares de RegressÃƒÂ£o
 rm(list=ls())
 
 library(DAAG)
@@ -13,10 +13,10 @@ attach(litters)
 names(litters)
 
 cor(bodywt, brainwt)
-#As variáveis bodywt e brainwt possuem grande influência uma sobre a outra
+#As variÃ¡veis bodywt e brainwt possuem grande influÃªncia uma sobre a outra
 cor(lsize, bodywt)
 cor(lsize, brainwt)
-#A correlação entre lsize e as outras duas variáveis é inversa e baixa.
+#A correlaÃ§Ã£o entre lsize e as outras duas variÃ¡veis Ã© inversa e baixa.
 
 par(mfrow=c(1,2))
 hist(bodywt)
@@ -25,9 +25,9 @@ hist(brainwt)
 reg1 <- lm(brainwt ~ lsize + bodywt)
 summary(reg1)
 reg1
-#Todas as variáveis são significativas para o modelo, porém o R^2 e o R^2 robusto são 
-#0,6505 e 0,6094, respectivamente, ou seja, a variável brainwt não é tão bem explicada pelas
-#variáveis lsize e bodywt.
+#Todas as variÃ¡veis sÃ£o significativas para o modelo, porÃ©m o R^2 e o R^2 robusto sÃ£o baixos, 0,6505 e 0,6094, respectivamente, ou seja, a variÃ¡vel brainwt nÃ£o Ã© tÃ£o bem
+explicadapelas
+#variÃ¡veis lsize e bodywt.
 
 library(scatterplot3d)
 
@@ -36,28 +36,28 @@ x=litters[,2]
 y=litters[,3]
 scatterplot3d(x, y, z, color = "red",
               grid = TRUE, box = FALSE, col.grid = "gray", col.axis = "steelblue", 
-              xlab="Peso Corporal", ylab="Tamaho do Cérebro",  zlab = "Tamanho da Ninhada",
+              xlab="Peso Corporal", ylab="Tamaho do CÃ©rebro",  zlab = "Tamanho da Ninhada",
               mar = c(5, 3, 0.8, 2))
 
 library(rgl)
 library(magick)
 plot3d(x, y, z,
        grid = TRUE, box = FALSE, col.grid = "gray", col.axis = "steelblue", 
-       xlab="Peso Corporal", ylab="Tamaho do Cérebro",  zlab = "Tamanho da Ninhada",
+       xlab="Peso Corporal", ylab="Tamaho do CÃ©rebro",  zlab = "Tamanho da Ninhada",
        mar = c(5, 3, 0.8, 2))
 
 #...........................................................
-#Base para as Regressões Ridge, Lasso e Elastic Net
+#Base para as RegressÃµes Ridge, Lasso e Elastic Net
 rm(list=ls())
 
 swiss
 
-X <- swiss[,-1] #conjunto de variáveis independentes
-y <- swiss[,1] #variável dependente
+X <- swiss[,-1] #conjunto de variÃ¡veis independentes
+y <- swiss[,1] #variÃ¡vel dependente
 
 library(glmnet)
 
-#Criando a matriz x para a função cv.glmnet
+#Criando a matriz x para a funÃ§Ã£o cv.glmnet
 c1 <- X[,1]
 c2 <- X[,2]
 c3 <- X[,3]
@@ -66,27 +66,27 @@ c5 <- X[,5]
 x <- matrix(c(c1, c2, c3, c4, c5), 47, 5)
 colnames(x) <- c("Agriculture", "Examination", "Education", "Catholic", "Infant.Mortality")
 
-##Regressão Ridge
+##RegressÃ£o Ridge
 set.seed(123)
-model1 <- cv.glmnet(x, y, alfa = 0, lambda = 10^seq(4, -1, -0.1)) #validação cruzada
+model1 <- cv.glmnet(x, y, alfa = 0, lambda = 10^seq(4, -1, -0.1)) #validaÃ§Ã£o cruzada
 best_lambda <- model1$lambda.min #melhor lambda
 
 ridge_coeff <- predict(model1, s = best_lambda, type = "coefficients")
-ridge_coeff #Coeficentes de regressão
+ridge_coeff #Coeficentes de regressÃ£o
 
-##Regressão Lasso
+##RegressÃ£o Lasso
 set.seed(123)
 model2 <- cv.glmnet(x, y, alfa = 1, parallel = TRUE, lambda = 10^seq(4, -1, -0.1))
 best_lambda1 <- model2$lambda.min #melhor lambda
 
 
 lasso_coeff <- predict(model2, s = best_lambda1, type = "coefficients")
-lasso_coeff #Coeficentes de regressão
+lasso_coeff #Coeficentes de regressÃ£o
 
-##Regressão Elastic Net
+##RegressÃ£o Elastic Net
 set.seed(123)
 model3 <- cv.glmnet(x, y, alfa = 0.5, lambda = 10^seq(4, -1, -0.1))
 best_lambda2 <- model3$lambda.min #melhor lambda
 
 en_coeff <- predict(model3, s = best_lambda2, type = "coefficients")
-en_coeff #Coeficentes de regressão
+en_coeff #Coeficentes de regressÃ£o
