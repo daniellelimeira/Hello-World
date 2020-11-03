@@ -25,9 +25,8 @@ hist(brainwt)
 reg1 <- lm(brainwt ~ lsize + bodywt)
 summary(reg1)
 reg1
-#Todas as variáveis são significativas para o modelo, porém o R^2 e o R^2 robusto são baixos, 0,6505 e 0,6094, respectivamente, ou seja, a variável brainwt não é tão bem
-explicadapelas
-#variáveis lsize e bodywt.
+#Todas as variáveis são significativas para o modelo, porém o R^2 e o R^2 robusto são baixos, 0,6505 e 0,6094, respectivamente, 
+#ou seja, a variável brainwt não é tão bem explicada pelas variáveis lsize e bodywt.
 
 library(scatterplot3d)
 
