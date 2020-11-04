@@ -67,7 +67,7 @@ colnames(x) <- c("Agriculture", "Examination", "Education", "Catholic", "Infant.
 
 ##Regressão Ridge
 set.seed(123)
-model1 <- cv.glmnet(x, y, alfa = 0, lambda = 10^seq(4, -1, -0.1)) #validação cruzada
+model1 <- cv.glmnet(x, y, alpha = 0, lambda = 10^seq(4, -1, -0.1)) #validação cruzada
 best_lambda <- model1$lambda.min #melhor lambda
 
 ridge_coeff <- predict(model1, s = best_lambda, type = "coefficients")
@@ -75,7 +75,7 @@ ridge_coeff #Coeficentes de regressão
 
 ##Regressão Lasso
 set.seed(123)
-model2 <- cv.glmnet(x, y, alfa = 1, parallel = TRUE, lambda = 10^seq(4, -1, -0.1))
+model2 <- cv.glmnet(x, y, alpha = 1, parallel = TRUE, lambda = 10^seq(4, -1, -0.1))
 best_lambda1 <- model2$lambda.min #melhor lambda
 
 
@@ -84,7 +84,7 @@ lasso_coeff #Coeficentes de regressão
 
 ##Regressão Elastic Net
 set.seed(123)
-model3 <- cv.glmnet(x, y, alfa = 0.5, lambda = 10^seq(4, -1, -0.1))
+model3 <- cv.glmnet(x, y, alpha = 0.5, lambda = 10^seq(4, -1, -0.1))
 best_lambda2 <- model3$lambda.min #melhor lambda
 
 en_coeff <- predict(model3, s = best_lambda2, type = "coefficients")
